@@ -1,0 +1,23 @@
+  <div class="home">
+    <!-- caraousel component -->
+  <app-carousel></app-carousel>
+  <div class="card card-margin">
+    <div class="row" *ngFor="let category of catagoryList">
+      <figure class="col-md-4 col-sm-4 col-4 category-img" loading="lazy">
+        <img src="assets/{{category.imageUrl}}" class="card-img" alt="{{category.name}}"
+          title="{{category.name}}">
+      </figure>
+      <div class="col-md-8 col-sm-8 col-8 category-description">
+        <div class="card-body">
+          <p class="card-title main-heading" aria-level="1" role="heading">{{category.name}}</p>
+          <p class="card-text">{{category.description}}</p>
+          <button type="button" class="common-btn catagory-btn" (click)="navigateToProducts()"
+            aria-label="Explore category">Explore
+            {{category.key | titlecase}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- To do skelton loading  -->

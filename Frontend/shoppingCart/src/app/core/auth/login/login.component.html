@@ -1,0 +1,42 @@
+<div class="login">
+    <div class="loginText">
+        <h2>Login</h2>
+        <p>
+          Get Access to your orders. Wishlist and recommendations
+        </p>
+      </div>
+   
+        <form [formGroup]="loginForm" >
+            <div class="form-group">
+                <label for="email" class="bmd-label-floating">Email</label>
+                <input type="email" class="form-control" formControlName="email" id="email" />
+            </div>
+            <div *ngIf="
+          (loginForm.get('email').touched || loginForm.get('email').dirty) &&
+          loginForm.get('email').invalid
+        " class="error-msg">
+                {{
+                loginForm.get("email")?.errors?.required
+                ? validationMessages.email.required
+                : validationMessages.email.pattern
+                }}
+            </div>
+            <div class="form-group">
+                <label for="password" class="bmd-label-floating">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password" />
+            </div>
+            <div *ngIf="
+          (loginForm.get('password').touched ||
+            loginForm.get('password').dirty) &&
+          loginForm.get('password').invalid
+        " class="error-msg">
+                {{
+                loginForm.get("password")?.errors?.required
+                ? validationMessages.password.required
+                : validationMessages.password.pattern
+                }}
+            </div>
+            <div *ngIf="loginError" class="error-msg">{{headerService.INVALID_EMAIL_PASSWORD}}</div>
+            <button aria-label="Login" type="submit" class="btn btn-danger btn-raised action-btn">Login</button>
+        </form>
+</div>

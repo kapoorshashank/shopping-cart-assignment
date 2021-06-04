@@ -1,0 +1,112 @@
+@import "../../../styles.scss";
+
+.home{
+    margin: 5% 10%;
+}
+
+.card-margin{
+    margin-top: 3%;
+}
+
+.banner-image{
+    width: 100%;
+    height: inherit;
+}
+
+.card {
+    .category-description {
+        .card-title {
+            font-weight: bolder;
+        }
+    }
+}
+
+.card:nth-child(even) {
+    .category-img {
+        float: right;
+        .card-img{
+            width: 500px;
+            height: inherit;
+        }
+    }
+    .category-description {
+        float: left;
+        .card-body{
+            text-align: center;
+            width: 500px;
+        }
+    }
+}
+.row {
+    border-bottom: 1px solid $color-gray;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.catagory-btn {
+    width: auto;
+}
+
+.carousel-indicators {
+    li {
+        background-color: black;
+        border-radius: 100%;
+        width: 5px;
+        height: 5px;
+    }
+}
+
+
+    h2:empty, h3:empty, .h4:empty, h5:empty, p:empty, a:empty, img:empty {
+        animation: loading 1.7s infinite linear;
+        background: #dedfe1;
+  background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+        background-repeat: no-repeat;
+      }
+      
+      img:empty.card-img-top{
+        height: 189.75px;
+      }
+      
+      h2:empty{
+        height: 38px;
+        width: 200px;
+      }
+
+      h3:empty {
+        height: 22px;
+        width: 200px;
+      }
+      h5:empty{
+        height: 30px;
+        width: 200px;
+      }
+    
+      a:empty{
+          width: 100px;
+          height: 40px;
+          border: 0;
+      }
+      h4:empty {
+        height: 18px;
+        width: 200px;
+      }
+    
+      p:empty {
+        height: 18px;
+        width: 200px;
+      } 
+      p:empty.lead {
+        height: 30px;
+        width: 200px;
+      }
+  @keyframes loading {
+    0% {
+      background-position: -100px;
+    }
+  
+    100% {
+  background-position: 200px;
+    }
+  }
