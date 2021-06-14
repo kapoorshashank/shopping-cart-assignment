@@ -11,6 +11,11 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CartComponent } from './cart/cart/cart.component';
+import { CartService } from '../shared/services/cart.service';
+import { MatIconModule } from '@angular/material/icon'
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 
 @NgModule({
     imports: [
@@ -19,13 +24,16 @@ import { RegisterComponent } from './auth/register/register.component';
         NgbModule,
         FormsModule,
         ReactiveFormsModule,
+        MatIconModule,
+        NgxSkeletonLoaderModule
+
     ],
-    declarations: [HeaderComponent, NotFoundComponent, HomeComponent, CarouselComponent, LoginComponent, RegisterComponent],
+    declarations: [HeaderComponent, NotFoundComponent, HomeComponent, CarouselComponent, LoginComponent, RegisterComponent, CartComponent],
     exports: [
         RouterModule,
         HeaderComponent,
     ],
-    providers: [
+    providers: [CartService
     ]
 })
 export class CoreModule { }

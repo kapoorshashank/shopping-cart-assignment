@@ -1,11 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/partials/colors";
 @import "./assets/partials/form";
+@import url(https://fonts.googleapis.com/css?family=Dosis:400,600,700);
 
+// @import "~bootstrap/dist/css/bootstrap.css";
 body {
     // font-family: "Dosis";
     font-weight: 600;
     color: $color-black;
+
+
+  font-family: "Dosis", "Arial", sans-serif;
+
 }
 
 .nav-link {
@@ -44,3 +50,5 @@ body {
     color: $color-pink;
     font-size: 1.1rem;
 }
+
+

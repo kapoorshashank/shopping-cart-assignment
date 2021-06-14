@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from '../shared/model/category.model';
 import { IProduct } from '../shared/model/product.model';
-import { ProductDataService} from '../../app/shared/services/product-data.service';
 import { AppService } from '../shared/services/app.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -19,30 +19,66 @@ export class ProductComponent implements OnInit {
   filteredCategory;
   filteredProducts: IProduct[] = [];
   isErrorOccured = false;
+  categoryId: any;
+  categories: ICategory[];
+  categoryList: ICategory[];
 
   constructor(
-    private productDataService: ProductDataService,
-    private appService: AppService
+    private appService: AppService,
+    private route: ActivatedRoute,
+
   ) { }
 
   ngOnInit(): void {
-    this.productCategoriesList = this.productDataService.categoriesList;
+    // Component initialisation 
+    // Extract value of category ID from route params
+    this.route.params.subscribe((params: Params) => {
+      this.categoryId = params['id'];
+    });
+    // to fetch Product and categories data
     this.getAllProducts();
+    this.fetchCategories();
+  }
+  
+  // Function to fetch Categories data - Beverages, Bakery Cakes etc
+  fetchCategories() {
+    this.appService.getCatagories().subscribe((data: ICategory[]) => {
+      this.categories = data;
+    });
   }
 
+  // Function to fetch Products data 
   getAllProducts(): void {
-    this.appService.getProducts().subscribe(productResponse => {
-      this.products = productResponse;
+    this.appService.getProducts().subscribe(data => {
+      if (this.categoryId) {
+        this.getFilteredList(data)
+      } else {
+        this.products = data;
+      }
     }, error => {
       console.log('error occured', error);
       this.isErrorOccured = true;
     });
   }
 
+// Function to fetch Product data on the basis of filter
+  getFilteredList(products: IProduct[]) {
+    let prod = [];
+    if (products.length > 0) {
+      products.forEach((product) => {
+        if (product.category === this.categoryId) {
+          prod.push(product);
+        }
+      });
+      this.products = prod;
+    }
+  }
+
+// Function to get the filtered category
   filterSelectedCategoryList(selectedCategoryId: string, index: number): void {
     this.selectedCatagoryIndex = index;
     this.resetFilter();
-    this.productCategoriesList.forEach(category => {
+    this.categories.forEach(category => {
       if (category.id === selectedCategoryId) {
         this.filteredCategory = category;
       }
@@ -50,6 +86,7 @@ export class ProductComponent implements OnInit {
     this.filterProductsOfSelectedCatagory();
   }
 
+// Function to get the product data on the basis of selected category id
   filterProductsOfSelectedCatagory(): void {
     this.products.forEach((prod: IProduct) => {
       if (prod.category === this.filteredCategory.id) {
@@ -57,9 +94,8 @@ export class ProductComponent implements OnInit {
       }
     });
   }
-
+// To reset filter
   resetFilter(): void {
-    this.productDataService.filteredCategory = [];
     this.filteredCategory = [];
     this.filteredProducts = [];
   }

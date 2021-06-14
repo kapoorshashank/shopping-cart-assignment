@@ -4,6 +4,7 @@ import {SharedModule} from '../shared/shared.module';
 import {ProductComponent} from './product.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 
@@ -15,6 +16,8 @@ import { ProductListComponent } from './product-list/product-list.component';
   imports: [
     CommonModule,
     ProductRoutingModule,
-        SharedModule]
+        SharedModule,
+    MatSnackBarModule ]
+
 })
 export class ProductModule { }

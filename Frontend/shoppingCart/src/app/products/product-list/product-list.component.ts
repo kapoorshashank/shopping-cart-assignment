@@ -2,6 +2,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/model/product.model';
 import { AppService } from 'src/app/shared/services/app.service';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-product-list',
@@ -15,39 +18,22 @@ export class ProductListComponent implements OnInit {
   displayProducts: IProduct[];
   selectedProductIndexes = [];
   isErrorOccured = false;
+  
 
   constructor(
-    private appService: AppService
+    // private cartService: CartService,
+    // private snackBar: MatSnackBar,
+    // Work in Progress for Cart functionality
   ) { }
 
   ngOnInit(): void {
   }
-// To do : Product list in Progress, Cart data to be fetched
-
-
-  // ngOnChanges(simpleChanges): void {
-  //   if (this.filteredProducts && !this.filteredProducts.length) {
-  //     this.displayProducts = this.products;
-  //   } else {
-  //     this.displayProducts = this.filteredProducts;
-  //   }
-  // }
-
-  // addProductToCart(product: IProduct): void {
-  //   this.highlightSelectedProducts(product);
-  //   this.appService.postProductToCart(product.id).subscribe(data => {
-  //     if (data && data.response === 'Success') {
-  //       this.appService.addProductToCart(product);
-  //     }
-  //   }, error => {
-  //     console.log('error occured', error);
-  //     this.isErrorOccured = true;
-  //   });
-  // }
-
-  // highlightSelectedProducts(selectedProduct: IProduct): void {
-  //   if (this.selectedProductIndexes.indexOf(selectedProduct) === -1) {
-  //     this.selectedProductIndexes.push(selectedProduct);
-  //   }
-  // }
+// Lifecycle hook will get called whenever there is a change in filteredProduct
+  ngOnChanges(simpleChanges): void {
+    if (this.filteredProducts && !this.filteredProducts.length) {
+      this.displayProducts = this.products;
+    } else {
+      this.displayProducts = this.filteredProducts;
+    }
+  }
 }

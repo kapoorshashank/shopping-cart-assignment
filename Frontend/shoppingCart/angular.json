@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/bootstrap-grid.scss",
               "src/assets/css/bootstrap.scss",
               "src/styles.scss"
             ],
@@ -94,6 +95,7 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.scss",
+              "src/assets/css/bootstrap-grid.scss",
               "src/styles.scss"
             ],
             "scripts": []

@@ -24,13 +24,8 @@ const routes: Routes = [
         component: RegisterComponent
     },
     {
-        path: 'home',
-        component: HomeComponent
-    },
-    {
         path: 'product',
         loadChildren: () => import(`../products/product.module`).then(m => m.ProductModule)
-
     },
     {
         path: '**',
