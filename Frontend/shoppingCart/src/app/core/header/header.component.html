@@ -1,35 +1,29 @@
 <nav class="wrapper">
   <div class="logo">
     <div class="header-content wrapper">
-    <a routerLink="home"><img src="../../assets/logo.png" class="home--img" alt="Sabka Bazaar logo" /></a>
-   
+      <a routerLink="home"><img src="../../assets/logo.png" class="home--img" alt="Sabka Bazaar logo" /></a>
 
-    <div class="content">
-      <a routerLink="/home" [routerLinkActive]="['active']"
-      #rla="routerLinkActive">Home</a>
-    </div>
-    <div class="content">
-      <a routerLink="/product" [routerLinkActive]="['active']"
-      #rla="routerLinkActive">Products</a>
+
+      <div class="content">
+        <a routerLink="/home" [routerLinkActive]="['active']" #rla="routerLinkActive">Home</a>
+      </div>
+      <div class="content">
+        <a routerLink="/product" [routerLinkActive]="['active']" #rla="routerLinkActive">Products</a>
+      </div>
     </div>
   </div>
-</div>
-      <div class="nav--flex-column">
-        <div class="nav--flex">
-          <div class="content" >
-          <a routerLink="/login" [routerLinkActive]="['active']"
-          #rla="routerLinkActive">Login</a>
-        </div>
-        <div class="content" >
-          <a routerLink="/register" [routerLinkActive]="['active']"
-          #rla="routerLinkActive">Register</a>
-        </div>
-        </div>
-        <button class="btn btn--mob" type="button" role="button"
-          (click)="openCart()">
-          <img src="assets/static/images/cart.svg" width="40" height="40" alt="cart image"
-            loading="lazy" />
-          <span id="cart"></span>{{cartValue$ | async}} &nbsp;<small>Items</small>
-        </button>
+  <div class="nav--flex-column">
+    <div class="nav--flex">
+      <div class="content">
+        <a routerLink="/login" [routerLinkActive]="['active']" #rla="routerLinkActive">Login</a>
+      </div>
+      <div class="content">
+        <a routerLink="/register" [routerLinkActive]="['active']" #rla="routerLinkActive">Register</a>
+      </div>
     </div>
+    <button class="btn btn--mob" type="button" role="button" (click)="openCart()">
+      <img src="assets/static/images/cart.svg" width="40" height="40" alt="cart image" loading="lazy" />
+      <span id="cart"></span>{{cartValue | async}} &nbsp;<small>Items</small>
+    </button>
+  </div>
 </nav>

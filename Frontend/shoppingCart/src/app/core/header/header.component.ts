@@ -13,33 +13,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  dialogConfig: MatDialogConfig;
-  cartValue$: Subject<number>;
-
-  // private subscriptions : Subscription = new Subscription();
   screenWidth: number;
-cartValue = 1;
+  dialogConfig: MatDialogConfig;
+  cartValue: Subject<number>;
+
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     this.screenWidth = window.innerWidth;
   }
   constructor(
     private cartService: CartService,
-    private breakPointObserver: BreakpointObserver,
     private dialog: MatDialog,
     private router: Router,
-    // private closeClicked: Subject<boolean> = new Subject<boolean>()
-
   ) {
-    // this.subscriptions.add(this.breakPointObserver.observe('(min-width: 992px)').subscribe((state)=>{
-    //   this.isAboveMedium = state.matches;
-    // }));
+ 
   }
 
   ngOnInit(): void {
     
-    this.cartValue$ = this.cartService.getTotalCartItems();
-    console.log(this.cartValue$);
+    this.cartValue = this.cartService.getTotalCartItems();
+    console.log(this.cartValue);
     this.getScreenSize();
 
   }
@@ -64,5 +57,3 @@ cartValue = 1;
     this.dialog.open(CartComponent, this.dialogConfig);
   }
 }
-
-// To Do : To add the cart icon and its functionality
