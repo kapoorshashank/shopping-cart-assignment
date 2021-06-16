@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private _fb: FormBuilder
   ) {
-   
+
   }
 
   ngOnInit(): void {

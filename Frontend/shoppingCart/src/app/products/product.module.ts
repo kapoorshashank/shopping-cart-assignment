@@ -4,7 +4,7 @@ import {SharedModule} from '../shared/shared.module';
 import {ProductComponent} from './product.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 

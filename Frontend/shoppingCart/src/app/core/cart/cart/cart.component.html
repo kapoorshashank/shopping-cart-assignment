@@ -1,0 +1,58 @@
+<div class="cart-container">
+    <div class="cart-header">
+      <div>
+        <span class="cart-title">My Cart ({{cartNumber}} items)</span>&nbsp;&nbsp;
+      </div>
+      <div class="close-icon-div" >
+        <mat-icon
+        aria-hidden="false"
+        aria-label="Close dialog button"
+        (click)="closeDialog()"
+        >close
+      </mat-icon>
+      </div>
+    </div>
+
+    <div *ngIf= "cartNumber>0" class="cart-body">
+        <ng-container *ngFor="let product of allCartItems | async">
+          <div class="cart-item">
+            <img src="assets{{product.productUrl}}" width="120" height="auto" loading="lazy">
+            <div class="product-name">
+              <h3>{{product.productName}}</h3>
+              <div class="d-flex flex-row">
+                <button 
+                    class="btn btn--border"
+                    (click)="updateCart(product.productId, false)">-
+                </button>
+                <span class="product-value">{{product.productValue}} </span>
+                <button 
+                    class="btn btn btn--border"
+                    (click)="updateCart(product.productId, true)">+
+                </button> <span class="product-value">x {{product.originalPrice}}</span>
+              <strong>Rs.{{product.productPrice}} </strong>
+              </div>
+            </div>
+
+          </div>
+        </ng-container>      
+  
+      </div>
+      <div *ngIf="cartNumber===0" class="noItems">
+        <div>
+          <strong>No items in cart</strong><br />
+          <span>Your favourite items are just a click away</span>
+        </div> 
+      </div>
+    <div class="cart-footer">
+      <div>
+        <p>Promo code can be applied on payment page</p>
+        <button class="my-btn checkout-btn" (click)="goToProductPage()">
+          <span *ngIf="cartNumber!==0">Proceed to checkout</span> 
+          <span *ngIf="cartNumber ===0">Start Shopping</span> 
+          <span *ngIf="cartNumber!==0">Rs.{{itemPrice | async}}</span>
+        </button>
+      
+      </div>
+    </div>
+  </div>
+  

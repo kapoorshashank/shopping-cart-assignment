@@ -1,14 +1,27 @@
+@import "../../../assets/partials/colors";
+
 .wrapper {
     height: 100px;
     display: flex;
     flex-direction: row;
+    // box-shadow: 0 2px 2px #efefef;
     justify-content: space-around;
-    background-color: #f6f0f0;
+    flex-wrap: wrap;
+    @media (min-width: 1000px) {
+flex-wrap: nowrap;
+    }
   }
-  img{
+
+
+  .home--img{
+    height: 100%;
+    width: 50%;
+    @media (min-width: 1000px) {
     height: auto; 
     width: auto
-  }
+    }  }
+
+    
   a {
     cursor: pointer;
     color: black;
@@ -27,13 +40,8 @@
   a:active {
     color: black;
   }
-  .content {
-    padding: 10px;
-    margin: 10px;
-  }
-  .space{
-    margin-right: 100%;
-  }
+  
+ 
   .header-right {
     display: flex;
     align-items: center;
@@ -44,9 +52,52 @@
   .cart {
     display: flex;
     margin-top: 5px;
-    background-color: grey;
+    // background-color: grey;
     height: 30px;
     align-items: center;
     width: 100px;
   }
-  
+
+  .btn{
+    border: none;
+  }
+  .btn--mob{
+    margin-top:2rem;
+    @media (min-width: 1000px) {
+      margin:0;
+            }
+  }
+  a:active ,a:hover{
+    border-bottom:2px solid #777777;
+  }
+
+.active{
+  color:$color-white;
+  background-color: $mergenta;
+  padding:0.4rem;
+
+}
+
+.nav--flex-column{
+  display: flex; 
+  flex-direction:column
+}
+.nav--flex{
+  display: flex;
+}
+
+.nav--flex {
+  display: none;
+  @media (min-width: 1000px) {
+  display: flex;
+  // flex-direction:column
+        }
+}
+
+.content {
+  display: none;
+  margin: 10px;
+  @media (min-width: 1000px) {
+    display: block;
+          }
+}

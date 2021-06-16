@@ -10,7 +10,7 @@
         }
     }
     .card-text {
-        background-color: $color-gray;
+        background-color: $grey-bg;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -34,17 +34,17 @@
     border: 1px solid $color-dark-gray;
 }
 
-@media screen and (max-width: 576px) {
-    .card{
-        .card-body {
-            text-align: center;
-            .card-img-top {
-                width: 30%;
-                height: auto;
-            }
-        }
-    }
-}
+// @media screen and (max-width: 576px) {
+//     .card{
+//         .card-body {
+//             text-align: center;
+//             .card-img-top {
+//                 width: 30%;
+//                 height: auto;
+//             }
+//         }
+//     }
+// }
 
 .snack-bar--color{
     color: white;

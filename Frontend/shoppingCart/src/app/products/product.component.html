@@ -1,7 +1,7 @@
 <app-product-list></app-product-list>
 <section class="container">
     <section class="row">
-        <section class="col-md-2 col-sm-2">
+        <section class="col-md-2 col-sm-2 prod-list-menu">
             <ng-container *ngFor="let category of categories; let i=index">
                 <div (click)="filterSelectedCategoryList(category.id, i)" class="side-bar"
                     [ngClass]="{'highlightCategory': selectedCatagoryIndex === i}">
@@ -9,6 +9,24 @@
                 </div>
             </ng-container>
         </section>
+        <div class="prod-list-select">
+            <select
+              #dropdown
+              id="prod-select"
+        (change)="onDropdownChange($event.target)"
+
+            >
+              <option value="all" selected role="option">All items</option>
+              <option
+                role="option"
+                [value]="category.id"
+                *ngFor="let category of categories"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+          <!-- </section> -->
         <section class="col-md-10 col-sm-10">
             <app-product-list [products]="products" [filteredProducts]="filteredProducts"></app-product-list>
         </section>

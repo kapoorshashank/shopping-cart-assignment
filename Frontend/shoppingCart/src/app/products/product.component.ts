@@ -16,12 +16,14 @@ export class ProductComponent implements OnInit {
   selectedCatagoryIndex: number;
   productCategoriesList: ICategory[] = [];
   products: IProduct[];
+  initialProducts: IProduct[];
   filteredCategory;
   filteredProducts: IProduct[] = [];
   isErrorOccured = false;
   categoryId: any;
-  categories: ICategory[];
+  categories: ICategory[] = [];
   categoryList: ICategory[];
+  selectedCategory: string;
 
   constructor(
     private appService: AppService,
@@ -30,30 +32,42 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Component initialisation 
+    // Component initialisation
     // Extract value of category ID from route params
     this.route.params.subscribe((params: Params) => {
-      this.categoryId = params['id'];
+      this.categoryId = params.id;
     });
     // to fetch Product and categories data
     this.getAllProducts();
     this.fetchCategories();
   }
-  
+
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
-  fetchCategories() {
-    this.appService.getCatagories().subscribe((data: ICategory[]) => {
-      this.categories = data;
+  fetchCategories(): void {
+    this.appService.getCatagories().subscribe((catagoriesResponse: ICategory[]) => {
+      catagoriesResponse.forEach((category) => {
+        
+        if (category.enabled) {
+          this.categories.push(category);
+        }
+      });
+      this.categories = this.categories.sort((a, b) => {
+        return a.order - b.order;
+      });
+      console.log(this.categories);
+    }, error => {
+      console.log('error occured', error);
     });
   }
-
-  // Function to fetch Products data 
+/**
+ * Function to fetch Products data
+ */
   getAllProducts(): void {
     this.appService.getProducts().subscribe(data => {
+      this.products = data;
+      this.initialProducts = [...data];
       if (this.categoryId) {
-        this.getFilteredList(data)
-      } else {
-        this.products = data;
+        this.getFilteredList(data);
       }
     }, error => {
       console.log('error occured', error);
@@ -63,7 +77,7 @@ export class ProductComponent implements OnInit {
 
 // Function to fetch Product data on the basis of filter
   getFilteredList(products: IProduct[]) {
-    let prod = [];
+    const prod = [];
     if (products.length > 0) {
       products.forEach((product) => {
         if (product.category === this.categoryId) {
@@ -88,15 +102,29 @@ export class ProductComponent implements OnInit {
 
 // Function to get the product data on the basis of selected category id
   filterProductsOfSelectedCatagory(): void {
-    this.products.forEach((prod: IProduct) => {
+    this.initialProducts.forEach((prod: IProduct) => {
       if (prod.category === this.filteredCategory.id) {
         this.filteredProducts.push(prod);
       }
     });
   }
+
 // To reset filter
   resetFilter(): void {
     this.filteredCategory = [];
     this.filteredProducts = [];
   }
+
+  // dropdown change - mobile devices specific behavior
+onDropdownChange(eventTarget: any) {
+  
+  this.selectedCategory = '';
+  if (this.selectedCategory === eventTarget.value || eventTarget.value === 'all') {
+    this.selectedCategory = '';
+  } else {
+    this.selectedCategory = eventTarget.value;
+  }
+  this.filterSelectedCategoryList(this.selectedCategory, 0);
 }
+}
+

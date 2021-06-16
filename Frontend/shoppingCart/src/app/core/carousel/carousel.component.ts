@@ -10,7 +10,7 @@ import {AppService} from '../../shared/services/app.service';
 export class CarouselComponent implements OnInit {
   bannerList: IBanner[];
   constructor(config: NgbCarouselConfig, private appService: AppService) {
-    //configuration setup for carousel data
+    // configuration setup for carousel data
     config.interval = 2000;
     config.wrap = true;
     config.keyboard = false;

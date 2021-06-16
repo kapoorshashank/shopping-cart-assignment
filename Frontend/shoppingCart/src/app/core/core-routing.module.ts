@@ -4,6 +4,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'cart',
+        component: CartComponent
     },
     {
         path: 'login',
@@ -30,7 +35,9 @@ const routes: Routes = [
     {
         path: '**',
         component: NotFoundComponent
-    }
+    },
+
+
 ];
 
 @NgModule({

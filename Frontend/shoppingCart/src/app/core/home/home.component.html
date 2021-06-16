@@ -1,23 +1,62 @@
   <div class="home">
     <!-- caraousel component -->
   <app-carousel></app-carousel>
+  <!-- <ngx-skeleton-loader></ngx-skeleton-loader> -->
+  <ng-container *ngIf="categoryList; else elseTemplate">
   <div class="card card-margin">
-    <div class="row" *ngFor="let category of catagoryList">
-      <figure class="col-md-4 col-sm-4 col-4 category-img" loading="lazy">
-        <img src="assets/{{category.imageUrl}}" class="card-img" alt="{{category.name}}"
-          title="{{category.name}}">
+    <div class="row" *ngFor="let category of categoryList; let i=index">
+      <figure class="col-md-4 col-sm-4 col-4 category-img" [ngStyle]="{'order': i%2 === 0 ? '1' : '2'}" loading="lazy">
+        <img src="assets/{{category?.imageUrl}}" class="card-img" alt="{{category?.name}}"
+          title="{{category?.name}}">
       </figure>
-      <div class="col-md-8 col-sm-8 col-8 category-description">
+      <div class="col-md-8 col-sm-8 col-8 category-description" [ngStyle]="{'order': i%2 === 0 ? '2' : '1'}">
         <div class="card-body">
-          <p class="card-title main-heading" aria-level="1" role="heading">{{category.name}}</p>
-          <p class="card-text">{{category.description}}</p>
-          <button type="button" class="common-btn catagory-btn" (click)="navigateToProducts()"
+          <p class="card-title main-heading"  role="heading">{{category?.name}}</p>
+          <p class="card-text">{{category?.description}}</p>
+          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id)"
             aria-label="Explore category">Explore
-            {{category.key | titlecase}}</button>
+            {{category?.key | titlecase}}</button>
         </div>
       </div>
     </div>
   </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <!-- Loading Items -->
+  <div class="card card-margin">
+    <!-- <div class="row" *ngFor="let category of categoryList"> -->
+      <figure class="col-md-4 col-sm-4 col-4 category-img">
+        <div class="item-img">
+          <ngx-skeleton-loader appearance="circle" [theme]="{ height: '100px',width: '100px'}"></ngx-skeleton-loader>
+        </div>
+      </figure>
+      <div class="col-md-8 col-sm-8 col-8 category-description">
+        <div class="card-body">
+          <p class="card-title main-heading" aria-level="1" role="heading">{{category?.name}}</p>
+          <p class="card-text">{{category?.description}}</p>
+          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id)"
+            aria-label="Explore category">Explore
+            {{category?.key | titlecase}}</button>
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+    <div class="item-wrap">
+      <div class="item-img">
+        <ngx-skeleton-loader appearance="circle" [theme]="{ height: '100px',width: '100px'}"></ngx-skeleton-loader>
+      </div>
+      <div class="item-content">
+        <div>
+          <ngx-skeleton-loader></ngx-skeleton-loader>
+        </div>
+        <p>
+          <ngx-skeleton-loader [theme]="{ height: '30px'}"></ngx-skeleton-loader>
+        </p>
+      </div>
+    </div>
+
+</ng-template>
+
 </div>
 
 <!-- To do skelton loading  -->

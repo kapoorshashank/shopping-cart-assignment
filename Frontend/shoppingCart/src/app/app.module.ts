@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule,} from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon'
+import {MatDialogModule, } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
     declarations: [
         AppComponent
