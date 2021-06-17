@@ -12,25 +12,25 @@ export class UserService {
 
 
 setDataInLocalStorage(data: any) {
-  let registeredUsersData = JSON.parse(localStorage.getItem('userData')) || [];
+  const registeredUsersData = JSON.parse(localStorage.getItem('userData')) || [];
   registeredUsersData.push(data);
-  localStorage.setItem("userData", JSON.stringify(registeredUsersData));
+  localStorage.setItem('userData', JSON.stringify(registeredUsersData));
   this.userData.next(data.name);
 }
 
 clearLocalStorage() {
-  var retrievedObject = JSON.parse(localStorage.getItem('userData')) || [];
+  const retrievedObject = JSON.parse(localStorage.getItem('userData')) || [];
   retrievedObject.forEach((item) => {
     if (item.isActive) {
       item.isActive = false;
     }
   });
-  localStorage.setItem("userData", JSON.stringify(retrievedObject));
+  localStorage.setItem('userData', JSON.stringify(retrievedObject));
   this.userData.next('');
 }
 
 getSignedInUser() {
-  let registeredUsersData = JSON.parse(localStorage.getItem('userData')) || [];
+  const registeredUsersData = JSON.parse(localStorage.getItem('userData')) || [];
   if (registeredUsersData.length > 0) {
     const activeUser = registeredUsersData.filter((item) => item.isActive);
     if (activeUser.length > 0) {

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   screenWidth: number;
   dialogConfig: MatDialogConfig;
   cartValue: Subject<number>;
-  signedInUser: string = '';
+  signedInUser = '';
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
- 
+
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     this.userService.userDetails.subscribe((username) => {
       this.signedInUser = username;
     });
-    
+
     this.cartValue = this.cartService.getTotalCartItems();
     console.log(this.cartValue);
     this.getScreenSize();
@@ -50,12 +50,12 @@ export class HeaderComponent implements OnInit {
   }
 
   openCart() {
-    
+
     if (this.screenWidth > 992) {
-      
+
       this.openCartDialog();
     } else {
-      
+
       this.router.navigate(['/cart']);
 
     }

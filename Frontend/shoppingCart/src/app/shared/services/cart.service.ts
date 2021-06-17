@@ -38,7 +38,7 @@ export class CartService {
   }
 
   updateSingleItem(productId, flag) {
-    
+
     this.productInfo = this.productDetails.find(product => product.productId === productId);
     (flag) ? (
       this.productInfo.productValue += 1,

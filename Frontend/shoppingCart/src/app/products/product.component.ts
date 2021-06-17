@@ -35,9 +35,9 @@ export class ProductComponent implements OnInit {
     // Component initialisation
     // Extract value of category ID from route params
     this.route.params.subscribe((params: Params) => {
-      debugger;
+      
       this.categoryId = params.id;
-      this.selectedCatagoryIndex = Number(params.order)-1;
+      this.selectedCatagoryIndex = Number(params.order) - 1;
     });
     // to fetch Product and categories data
     this.getAllProducts();
@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
   fetchCategories(): void {
     this.appService.getCatagories().subscribe((catagoriesResponse: ICategory[]) => {
       catagoriesResponse.forEach((category) => {
-        
+
         if (category.enabled) {
           this.categories.push(category);
         }
@@ -92,7 +92,7 @@ export class ProductComponent implements OnInit {
 
 // Function to get the filtered category
   filterSelectedCategoryList(selectedCategoryId: string, index: number): void {
-    debugger;
+    
     this.selectedCatagoryIndex = index;
     this.resetFilter();
     this.categories.forEach(category => {
@@ -120,7 +120,7 @@ export class ProductComponent implements OnInit {
 
   // dropdown change - mobile devices specific behavior
 onDropdownChange(eventTarget: any) {
-  
+
   this.selectedCategory = '';
   if (this.selectedCategory === eventTarget.value || eventTarget.value === 'all') {
     this.selectedCategory = '';

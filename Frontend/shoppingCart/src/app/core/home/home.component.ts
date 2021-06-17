@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   getCatagories(): void {
     this.appService.getCatagories().subscribe((catagoriesResponse: ICategory[]) => {
       catagoriesResponse.forEach((category) => {
-        
+
         if (category.enabled) {
           this.categoryList.push(category);
         }
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   exploreProducts(id: String, order: number): void {
-    debugger;
+    
     this.route.navigate(['/product', {id, order, skipLocationChange: true, replaceUrl: false}]);
   }
 }

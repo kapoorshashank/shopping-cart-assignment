@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import{ UserService} from '../../user.service';
+import { UserService} from '../../user.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService : UserService
+    private userService: UserService
     // private _fb: FormBuilder
   ) {
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
 }
 onSubmit() {
-  debugger;
+  
   const usrData = {
     name: this.registrationForm.value.firstName, email: this.registrationForm.value.email,
     password: this.registrationForm.value.password, isActive: true
