@@ -1,9 +1,11 @@
 .login {
-    display: flex;
     max-width: 95%;
     margin: 5% auto 0;
+    @media (min-width: 1000px) {
+    display: flex;
     justify-content: center;
     align-items: center;
+            }
 }
 
 .loginHeader h3 {

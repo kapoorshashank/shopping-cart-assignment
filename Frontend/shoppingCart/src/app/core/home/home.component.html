@@ -1,7 +1,7 @@
   <div class="home">
     <!-- caraousel component -->
   <app-carousel></app-carousel>
-  <!-- <ngx-skeleton-loader></ngx-skeleton-loader> -->
+  <ngx-skeleton-loader></ngx-skeleton-loader>
   <ng-container *ngIf="categoryList; else elseTemplate">
   <div class="card card-margin">
     <div class="row" *ngFor="let category of categoryList; let i=index">
@@ -12,8 +12,9 @@
       <div class="col-md-8 col-sm-8 col-8 category-description" [ngStyle]="{'order': i%2 === 0 ? '2' : '1'}">
         <div class="card-body">
           <p class="card-title main-heading"  role="heading">{{category?.name}}</p>
+          <!-- <p class="card-title main-heading" aria-level="1" role="heading">{{category?.name}}</p> -->
           <p class="card-text">{{category?.description}}</p>
-          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id)"
+          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id, category?.order)"
             aria-label="Explore category">Explore
             {{category?.key | titlecase}}</button>
         </div>
@@ -34,7 +35,7 @@
         <div class="card-body">
           <p class="card-title main-heading" aria-level="1" role="heading">{{category?.name}}</p>
           <p class="card-text">{{category?.description}}</p>
-          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id)"
+          <button type="button" class="common-btn catagory-btn" (click)="exploreProducts(category?.id, category?.order)"
             aria-label="Explore category">Explore
             {{category?.key | titlecase}}</button>
         </div>

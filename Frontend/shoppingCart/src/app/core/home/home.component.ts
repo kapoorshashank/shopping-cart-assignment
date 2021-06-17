@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  exploreProducts(id: String): void {
-    
-    this.route.navigate(['/product', {id}]);
+  exploreProducts(id: String, order: number): void {
+    debugger;
+    this.route.navigate(['/product', {id, order, skipLocationChange: true, replaceUrl: false}]);
   }
 }
