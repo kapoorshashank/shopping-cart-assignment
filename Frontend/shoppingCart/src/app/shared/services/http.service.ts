@@ -5,39 +5,32 @@ import { Observable } from 'rxjs';
 import { IBanner } from '../model/banner.model';
 import { IProduct } from '../model/product.model';
 import { ICategory } from '../model/category.model';
+import { baseUrl } from '../../shared/constant';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
-
-  baseUrl = 'http://localhost:5000';
-  initialCart: any;
-  finalCart: any[];
-  subject$: any;
-  cartItems$: any;
+export class HttpService {
 
   constructor(private http: HttpClient) { }
 
   getBanners(): Observable<IBanner[]> {
-    console.log('Ni hao from App Serivce');
-    const bannerUrl = `${this.baseUrl}/banners`;
+    const bannerUrl = `${baseUrl}/banners`;
     return this.http.get<IBanner[]>(bannerUrl);
   }
 
-  getCatagories(): Observable<ICategory[]> {
-    console.log('Ni hao from geT Categories');
-    const categoriesUrl = `${this.baseUrl}/categories`;
+  getCategories(): Observable<ICategory[]> {
+    const categoriesUrl = `${baseUrl}/categories`;
     return this.http.get<ICategory[]>(categoriesUrl);
   }
 
   getProducts(): Observable<IProduct[]> {
-    const productsUrl = `${this.baseUrl}/products`;
+    const productsUrl = `${baseUrl}/products`;
     return this.http.get<IProduct[]>(productsUrl);
   }
 
   postProductToCart(productId: string): Observable<ICartResponse> {
-    const addToCartUrl = `${this.baseUrl}/addToCart`;
+    const addToCartUrl = `${baseUrl}/addToCart`;
     return this.http.post<ICartResponse>(addToCartUrl, productId);
   }
 

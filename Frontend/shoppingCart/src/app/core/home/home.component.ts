@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { AppService } from 'src/app/shared/services/app.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +12,20 @@ export class HomeComponent implements OnInit {
   categoryList: ICategory[] = [];
 
   constructor(
-    private appService: AppService,
+    private httpService: HttpService,
     private route: Router
-    // AppService is a common service to handle fetching of data across all the modules and components
+    // HttpService is a common service to handle fetching of data across all the modules and components
   ) { }
 
   ngOnInit(): void {
     // function called at the time of initialisation of the component
-  this.getCatagories();
+  this.getCategories();
   }
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
-  getCatagories(): void {
-    this.appService.getCatagories().subscribe((catagoriesResponse: ICategory[]) => {
-      catagoriesResponse.forEach((category) => {
+  getCategories(): void {
+    this.httpService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
+      categoriesResponse.forEach((category) => {
 
         if (category.enabled) {
           this.categoryList.push(category);
@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
       this.categoryList = this.categoryList.sort((a, b) => {
         return a.order - b.order;
       });
-      console.log(this.categoryList);
     }, error => {
       console.log('error occured', error);
     });
@@ -42,6 +41,6 @@ export class HomeComponent implements OnInit {
 
   exploreProducts(id: String, order: number): void {
     
-    this.route.navigate(['/product', {id, order, skipLocationChange: true, replaceUrl: false}]);
+    this.route.navigate(['/product', {id, order}]);
   }
 }

@@ -1,7 +1,6 @@
 
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/model/product.model';
-import { AppService } from 'src/app/shared/services/app.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

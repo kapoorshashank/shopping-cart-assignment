@@ -1,8 +1,8 @@
 @import "../../../styles.scss";
 
 .card {
-    border: none;
     border-bottom: 1px dashed $color-dark-gray;
+    padding: 1rem;
     .card-body{
         .card-img-top{
             width: 100%;
@@ -16,6 +16,7 @@
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
+        margin-bottom: 0.5rem;
     }
 }
 
@@ -50,4 +51,25 @@
     color: white;
     
 
+}
+
+
+@media (max-width: 768px) {
+    .card--small{
+        display:flex; 
+        flex-direction: row;
+    }
+    .price--large{
+        display: none;
+    }
+}
+
+@media (min-width : 768px){
+    .price--small{
+        display: none;
+    }
+}
+
+.card-title{
+    height: 2.5rem;
 }

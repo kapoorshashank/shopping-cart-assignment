@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
   }
 
   pwdMatchValidator(frm: FormGroup) {
-    debugger;
+    
     return frm.get('password').value === frm.get('confirmPassword').value
       ? null : { 'mismatch': true };
   }

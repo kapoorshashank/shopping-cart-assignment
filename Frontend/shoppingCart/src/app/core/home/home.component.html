@@ -5,11 +5,11 @@
   <ng-container *ngIf="categoryList; else elseTemplate">
   <div class="card card-margin">
     <div class="row" *ngFor="let category of categoryList; let i=index">
-      <figure class="col-md-4 col-sm-4 col-4 category-img" [ngStyle]="{'order': i%2 === 0 ? '1' : '2'}" loading="lazy">
+      <figure class="col-md-4 col-sm-4 col-4 col-lg-4 category-img" [ngStyle]="{'order': i%2 === 0 ? '1' : '2'}" loading="lazy">
         <img src="assets/{{category?.imageUrl}}" class="card-img" alt="{{category?.name}}"
           title="{{category?.name}}">
       </figure>
-      <div class="col-md-8 col-sm-8 col-8 category-description" [ngStyle]="{'order': i%2 === 0 ? '2' : '1'}">
+      <div class="col-md-8 col-sm-8 col-lg-8 col-8 category-description" [ngStyle]="{'order': i%2 === 0 ? '2' : '1'}">
         <div class="card-body">
           <p class="card-title main-heading"  role="heading">{{category?.name}}</p>
           <!-- <p class="card-title main-heading" aria-level="1" role="heading">{{category?.name}}</p> -->

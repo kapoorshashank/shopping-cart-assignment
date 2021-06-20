@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
     });
 
     this.cartValue = this.cartService.getTotalCartItems();
-    console.log(this.cartValue);
     this.getScreenSize();
 
   }

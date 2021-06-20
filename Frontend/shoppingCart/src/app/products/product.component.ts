@@ -1,8 +1,8 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ICategory } from '../shared/model/category.model';
 import { IProduct } from '../shared/model/product.model';
-import { AppService } from '../shared/services/app.service';
+import { HttpService } from '../shared/services/http.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 
@@ -24,9 +24,10 @@ export class ProductComponent implements OnInit {
   categories: ICategory[] = [];
   categoryList: ICategory[];
   selectedCategory: string;
+  @ViewChild('div') switchSpanElement:ElementRef;
 
   constructor(
-    private appService: AppService,
+    private httpService: HttpService,
     private route: ActivatedRoute,
 
   ) { }
@@ -46,8 +47,8 @@ export class ProductComponent implements OnInit {
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
   fetchCategories(): void {
-    this.appService.getCatagories().subscribe((catagoriesResponse: ICategory[]) => {
-      catagoriesResponse.forEach((category) => {
+    this.httpService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
+      categoriesResponse.forEach((category) => {
 
         if (category.enabled) {
           this.categories.push(category);
@@ -56,7 +57,6 @@ export class ProductComponent implements OnInit {
       this.categories = this.categories.sort((a, b) => {
         return a.order - b.order;
       });
-      console.log(this.categories);
     }, error => {
       console.log('error occured', error);
     });
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
  * Function to fetch Products data
  */
   getAllProducts(): void {
-    this.appService.getProducts().subscribe(data => {
+    this.httpService.getProducts().subscribe(data => {
       this.products = data;
       this.initialProducts = [...data];
       if (this.categoryId) {
@@ -92,7 +92,12 @@ export class ProductComponent implements OnInit {
 
 // Function to get the filtered category
   filterSelectedCategoryList(selectedCategoryId: string, index: number): void {
-    
+    if(this.selectedCatagoryIndex===index){
+      
+      this.filteredProducts = this.initialProducts;
+      this.selectedCatagoryIndex = null; 
+    }
+    else{
     this.selectedCatagoryIndex = index;
     this.resetFilter();
     this.categories.forEach(category => {
@@ -101,6 +106,7 @@ export class ProductComponent implements OnInit {
       }
     });
     this.filterProductsOfSelectedCatagory();
+  }
   }
 
 // Function to get the product data on the basis of selected category id
