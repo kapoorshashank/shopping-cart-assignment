@@ -5,7 +5,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog
 import { CartService} from '../../shared/services/cart.service';
 import { BreakpointObserver} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../service/user.service';
 
 
 @Component({
