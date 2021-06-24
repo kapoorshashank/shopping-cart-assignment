@@ -1,4 +1,4 @@
-export interface ICartResponse {
+export interface CartResponse {
     response: string;
     responseMessage: string;
 }

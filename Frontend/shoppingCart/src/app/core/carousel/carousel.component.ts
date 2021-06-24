@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import {IBanner} from '../../shared/model/banner.model';
+import {Banner} from '../../shared/model/banner.model';
 import {CommonService} from '../../shared/services/common.service';
 @Component({
   selector: 'app-carousel',
@@ -8,7 +8,7 @@ import {CommonService} from '../../shared/services/common.service';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  bannerList: IBanner[];
+  bannerList: Banner[];
   constructor(config: NgbCarouselConfig, private commonService: CommonService) {
     // configuration setup for carousel data
     config.interval = 2000;

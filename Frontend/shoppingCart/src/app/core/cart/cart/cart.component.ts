@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { IProductDetails } from 'src/app/shared/model/productDetails.model';
+import { ProductDetails } from 'src/app/shared/model/productDetails.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public allCartItems: BehaviorSubject<IProductDetails[]>;
+  public allCartItems: BehaviorSubject<ProductDetails[]>;
   public itemPrice: BehaviorSubject<number>;
   public cartNumber: number;
 

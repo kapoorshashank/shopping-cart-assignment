@@ -1,7 +1,7 @@
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ICategory } from '../shared/model/category.model';
-import { IProduct } from '../shared/model/product.model';
+import { Category } from '../shared/model/category.model';
+import { Product } from '../shared/model/product.model';
 import { CommonService } from '../shared/services/common.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -14,13 +14,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ProductComponent implements OnInit {
 
   public selectedCatagoryIndex: number;
-  public products: IProduct[];
-  private initialProducts: IProduct[];
+  public products: Product[];
+  private initialProducts: Product[];
   public filteredCategory;
-  public filteredProducts: IProduct[] = [];
+  public filteredProducts: Product[] = [];
   public isErrorOccured: boolean;
   private categoryId: string;
-  public categories: ICategory[] = [];
+  public categories: Category[] = [];
   private selectedCategory: string;
   public allItems;
 
@@ -46,16 +46,14 @@ export class ProductComponent implements OnInit {
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
   fetchCategories(): void {
-    this.commonService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
-      categoriesResponse.forEach((category) => {
-
-        if (category.enabled) {
-          this.categories.push(category);
-        }
-      });
-      this.categories = this.categories.sort((a, b) => {
+   this.commonService.getCategories().subscribe((categoriesResponse: Category[]) => {
+      this.categories = categoriesResponse.map((category) => {
+        return category;
+      }).filter((category)=>{
+        return category.enabled === true;
+      }).sort((a,b)=> {
         return a.order - b.order;
-      });
+      })
     }, error => {
       console.log('error occured', error);
     });
@@ -77,15 +75,17 @@ export class ProductComponent implements OnInit {
   }
 
   // Function to fetch Product data on the basis of filter
-  getFilteredList(products: IProduct[]) {
-    const prod = [];
+  getFilteredList(products: Product[]) {
     if (products.length > 0) {
-      products.forEach((product) => {
-        if (product.category === this.categoryId) {
-          prod.push(product);
-        }
-      });
-      this.products = prod;
+   this.products=   products.map((product) => {
+     return product
+        // if (product.category === this.categoryId) {
+        //   prod.push(product);
+        // }
+      }).filter((product)=>{
+return product.category === this.categoryId
+      })
+      // this.products = prod;
     }
   }
 
@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit {
 
   // Function to get the product data on the basis of selected category id
   filterProductsOfSelectedCatagory(): void {
-    this.initialProducts.forEach((prod: IProduct) => {
+    this.initialProducts.forEach((prod: Product) => {
       if (prod.category === this.filteredCategory.id) {
         this.filteredProducts.push(prod);
       }

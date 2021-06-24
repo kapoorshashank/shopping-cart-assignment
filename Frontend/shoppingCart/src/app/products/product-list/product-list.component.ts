@@ -1,6 +1,6 @@
 
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/shared/model/product.model';
+import { Product } from 'src/app/shared/model/product.model';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,10 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProductListComponent implements OnInit {
 
-  @Input() products: IProduct[];
-  @Input() filteredProducts: IProduct[];
-  public displayProducts: IProduct[];
-  private productDetails: IProduct;
+  @Input() products: Product[];
+  @Input() filteredProducts: Product[];
+  public displayProducts: Product[];
+  private productDetails: Product;
   public selectedProductIndexes = [];
   public isErrorOccured:boolean;
   constructor(
