@@ -12,17 +12,16 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-
+  public allItems;
   public selectedCatagoryIndex: number;
   public products: Product[];
-  private initialProducts: Product[];
   public filteredCategory;
   public filteredProducts: Product[] = [];
   public isErrorOccured: boolean;
-  private categoryId: string;
   public categories: Category[] = [];
   private selectedCategory: string;
-  public allItems;
+  private initialProducts: Product[];
+  private categoryId: string;
 
   constructor(
     private commonService: CommonService,
@@ -46,12 +45,12 @@ export class ProductComponent implements OnInit {
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
   fetchCategories(): void {
-   this.commonService.getCategories().subscribe((categoriesResponse: Category[]) => {
+    this.commonService.getCategories().subscribe((categoriesResponse: Category[]) => {
       this.categories = categoriesResponse.map((category) => {
         return category;
-      }).filter((category)=>{
+      }).filter((category) => {
         return category.enabled === true;
-      }).sort((a,b)=> {
+      }).sort((a, b) => {
         return a.order - b.order;
       })
     }, error => {
@@ -77,15 +76,11 @@ export class ProductComponent implements OnInit {
   // Function to fetch Product data on the basis of filter
   getFilteredList(products: Product[]) {
     if (products.length > 0) {
-   this.products=   products.map((product) => {
-     return product
-        // if (product.category === this.categoryId) {
-        //   prod.push(product);
-        // }
-      }).filter((product)=>{
-return product.category === this.categoryId
+      this.products = products.map((product) => {
+        return product
+      }).filter((product) => {
+        return product.category === this.categoryId
       })
-      // this.products = prod;
     }
   }
 
