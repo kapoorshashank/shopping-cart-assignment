@@ -5,9 +5,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CarouselComponent } from './carousel/carousel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -25,15 +23,17 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
         FormsModule,
         ReactiveFormsModule,
         MatIconModule,
-        NgxSkeletonLoaderModule
+        NgxSkeletonLoaderModule,
 
     ],
-    declarations: [HeaderComponent, NotFoundComponent, HomeComponent, CarouselComponent, LoginComponent, RegisterComponent, CartComponent],
+    declarations: [HeaderComponent, NotFoundComponent, LoginComponent, RegisterComponent, CartComponent],
     exports: [
         RouterModule,
         HeaderComponent,
     ],
-    providers: [CartService
-    ]
+    providers: [
+    ],
+    bootstrap: [HeaderComponent]
+
 })
 export class CoreModule { }

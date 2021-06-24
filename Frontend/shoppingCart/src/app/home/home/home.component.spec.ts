@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HomeComponent } from './home.component';
-import { CommonService } from 'src/app/shared/services/http.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 import { getCategoriesMock } from '../../shared/constant';
 
 describe('HomeComponent', () => {
