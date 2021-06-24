@@ -11,7 +11,7 @@
     </section>
     <div class="prod-list-select">
       <select #dropdown id="prod-select" (change)="onDropdownChange($event.target)">
-        <option value="all" selected role="option">All items</option>
+        <option value="all" selected role="option">{{this.allItems}}</option>
         <option role="option" [value]="category.id" *ngFor="let category of categories">
           {{ category.name }}
         </option>

@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HomeComponent } from './home.component';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { CommonService } from 'src/app/shared/services/http.service';
 import { getCategoriesMock } from '../../shared/constant';
 
 describe('HomeComponent', () => {
@@ -17,8 +17,8 @@ describe('HomeComponent', () => {
       declarations: [HomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [{
-        provide: HttpService,
-        useValue: jasmine.createSpyObj('HttpService', ['getCategories'])
+        provide: CommonService,
+        useValue: jasmine.createSpyObj('CommonService', ['getCategories'])
       }],
     })
       .compileComponents();
@@ -27,7 +27,7 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    const mockService = TestBed.get(HttpService);
+    const mockService = TestBed.get(CommonService);
     mockService.getCategories.and.returnValue(of(getCategoriesMock));
     fixture.detectChanges();
   });

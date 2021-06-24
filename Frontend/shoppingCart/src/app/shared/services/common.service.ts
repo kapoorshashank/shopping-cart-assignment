@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 import { IBanner } from '../model/banner.model';
 import { IProduct } from '../model/product.model';
 import { ICategory } from '../model/category.model';
-import { baseUrl } from '../../shared/constant';
+import { baseUrl } from '../constant';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class CommonService {
 
   constructor(private http: HttpClient) { }
 

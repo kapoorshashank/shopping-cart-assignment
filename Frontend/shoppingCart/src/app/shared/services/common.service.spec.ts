@@ -1,17 +1,17 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpService } from './http.service';
+import { CommonService } from './common.service';
 
-describe('HttpService', () => {
-  let service: HttpService;
+describe('CommonService', () => {
+  let service: CommonService;
 
   beforeEach(() => {TestBed.configureTestingModule({
     imports: [HttpClientTestingModule], 
-    providers: [HttpService],
+    providers: [CommonService],
     schemas: [ NO_ERRORS_SCHEMA ],
   });
-  service = TestBed.inject(HttpService);
+  service = TestBed.inject(CommonService);
  } );
 
   it('should be created', () => {

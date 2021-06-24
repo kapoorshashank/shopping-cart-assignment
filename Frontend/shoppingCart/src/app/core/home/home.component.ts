@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/shared/model/category.model';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit {
   categoryList: ICategory[] = [];
 
   constructor(
-    private httpService: HttpService,
+    private commonService: CommonService,
     private route: Router
-    // HttpService is a common service to handle fetching of data across all the modules and components
+    // CommonService is a service to handle fetching of data across all the modules and components
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
   getCategories(): void {
-    this.httpService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
+    this.commonService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
       categoriesResponse.forEach((category) => {
 
         if (category.enabled) {

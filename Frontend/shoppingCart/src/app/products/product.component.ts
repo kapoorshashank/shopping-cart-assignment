@@ -2,7 +2,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ICategory } from '../shared/model/category.model';
 import { IProduct } from '../shared/model/product.model';
-import { HttpService } from '../shared/services/http.service';
+import { CommonService } from '../shared/services/common.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 
@@ -22,13 +22,15 @@ export class ProductComponent implements OnInit {
   private categoryId: string;
   public categories: ICategory[] = [];
   private selectedCategory: string;
+  public allItems;
 
   constructor(
-    private httpService: HttpService,
+    private commonService: CommonService,
     private route: ActivatedRoute,
 
   ) {
     this.isErrorOccured = false;
+    this.allItems = 'All Items'
   }
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class ProductComponent implements OnInit {
 
   // Function to fetch Categories data - Beverages, Bakery Cakes etc
   fetchCategories(): void {
-    this.httpService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
+    this.commonService.getCategories().subscribe((categoriesResponse: ICategory[]) => {
       categoriesResponse.forEach((category) => {
 
         if (category.enabled) {
@@ -62,7 +64,7 @@ export class ProductComponent implements OnInit {
    * Function to fetch Products data
    */
   getAllProducts(): void {
-    this.httpService.getProducts().subscribe(data => {
+    this.commonService.getProducts().subscribe(data => {
       this.products = data;
       this.initialProducts = [...data];
       if (this.categoryId) {

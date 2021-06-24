@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import {IBanner} from '../../shared/model/banner.model';
-import {HttpService} from '../../shared/services/http.service';
+import {CommonService} from '../../shared/services/common.service';
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
@@ -9,7 +9,7 @@ import {HttpService} from '../../shared/services/http.service';
 })
 export class CarouselComponent implements OnInit {
   bannerList: IBanner[];
-  constructor(config: NgbCarouselConfig, private httpService: HttpService) {
+  constructor(config: NgbCarouselConfig, private commonService: CommonService) {
     // configuration setup for carousel data
     config.interval = 2000;
     config.wrap = true;
@@ -23,7 +23,7 @@ export class CarouselComponent implements OnInit {
 
   // Function to fetch banner data
   getBannerList(): void {
-    this.httpService.getBanners().subscribe(bannersResponse => {
+    this.commonService.getBanners().subscribe(bannersResponse => {
       this.bannerList = bannersResponse;
     }, error => {
       console.log('error occured', error);

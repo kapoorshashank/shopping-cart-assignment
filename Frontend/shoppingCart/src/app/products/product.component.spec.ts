@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import {ProductComponent} from '../products/product.component';
 import { getCategoriesMock, getProductsMock } from '../shared/constant';
-import { HttpService } from '../shared/services/http.service';
+import { CommonService } from '../shared/services/common.service';
 
 describe('ProductComponent', () => {
     let component: ProductComponent;
@@ -17,8 +17,8 @@ describe('ProductComponent', () => {
           declarations: [ProductComponent],
           schemas: [NO_ERRORS_SCHEMA],
           providers: [{
-            provide: HttpService,
-            useValue: jasmine.createSpyObj('HttpService', ['getCategories', 'getProducts'])
+            provide: CommonService,
+            useValue: jasmine.createSpyObj('CommonService', ['getCategories', 'getProducts'])
           }],
         })
           .compileComponents();
@@ -27,7 +27,7 @@ describe('ProductComponent', () => {
       beforeEach(() => {
         fixture = TestBed.createComponent(ProductComponent);
         component = fixture.componentInstance;
-        const mockService = TestBed.get(HttpService);
+        const mockService = TestBed.get(CommonService);
         mockService.getCategories.and.returnValue(of(getCategoriesMock));
         mockService.getProducts.and.returnValue(of(getProductsMock));
         fixture.detectChanges();
