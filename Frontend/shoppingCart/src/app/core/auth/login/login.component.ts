@@ -10,14 +10,15 @@ import { UserService} from '../../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  loginError = false;
-  errorMsg: string;
+  public loginForm: FormGroup;
+  public loginError;
+  public errorMsg: string;
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
+    this.loginError=false;
   }
 
   ngOnInit() {

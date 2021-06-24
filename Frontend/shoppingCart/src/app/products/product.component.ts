@@ -13,30 +13,27 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-  selectedCatagoryIndex: number;
-  productCategoriesList: ICategory[] = [];
-  products: IProduct[];
-  initialProducts: IProduct[];
-  filteredCategory;
-  filteredProducts: IProduct[] = [];
-  isErrorOccured = false;
-  categoryId: any;
-  categories: ICategory[] = [];
-  categoryList: ICategory[];
-  selectedCategory: string;
-  @ViewChild('div') switchSpanElement:ElementRef;
+  public selectedCatagoryIndex: number;
+  public products: IProduct[];
+  private initialProducts: IProduct[];
+  public filteredCategory;
+  public filteredProducts: IProduct[] = [];
+  public isErrorOccured: boolean;
+  private categoryId: string;
+  public categories: ICategory[] = [];
+  private selectedCategory: string;
 
   constructor(
     private httpService: HttpService,
     private route: ActivatedRoute,
 
-  ) { }
+  ) {
+    this.isErrorOccured = false;
+  }
 
   ngOnInit(): void {
-    // Component initialisation
     // Extract value of category ID from route params
     this.route.params.subscribe((params: Params) => {
-      
       this.categoryId = params.id;
       this.selectedCatagoryIndex = Number(params.order) - 1;
     });
@@ -61,9 +58,9 @@ export class ProductComponent implements OnInit {
       console.log('error occured', error);
     });
   }
-/**
- * Function to fetch Products data
- */
+  /**
+   * Function to fetch Products data
+   */
   getAllProducts(): void {
     this.httpService.getProducts().subscribe(data => {
       this.products = data;
@@ -77,7 +74,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-// Function to fetch Product data on the basis of filter
+  // Function to fetch Product data on the basis of filter
   getFilteredList(products: IProduct[]) {
     const prod = [];
     if (products.length > 0) {
@@ -90,26 +87,26 @@ export class ProductComponent implements OnInit {
     }
   }
 
-// Function to get the filtered category
+  // Function to get the filtered category
   filterSelectedCategoryList(selectedCategoryId: string, index: number): void {
-    if(this.selectedCatagoryIndex===index){
-      
+    if (this.selectedCatagoryIndex === index) {
+
       this.filteredProducts = this.initialProducts;
-      this.selectedCatagoryIndex = null; 
+      this.selectedCatagoryIndex = null;
     }
-    else{
-    this.selectedCatagoryIndex = index;
-    this.resetFilter();
-    this.categories.forEach(category => {
-      if (category.id === selectedCategoryId) {
-        this.filteredCategory = category;
-      }
-    });
-    this.filterProductsOfSelectedCatagory();
-  }
+    else {
+      this.selectedCatagoryIndex = index;
+      this.resetFilter();
+      this.categories.forEach(category => {
+        if (category.id === selectedCategoryId) {
+          this.filteredCategory = category;
+        }
+      });
+      this.filterProductsOfSelectedCatagory();
+    }
   }
 
-// Function to get the product data on the basis of selected category id
+  // Function to get the product data on the basis of selected category id
   filterProductsOfSelectedCatagory(): void {
     this.initialProducts.forEach((prod: IProduct) => {
       if (prod.category === this.filteredCategory.id) {
@@ -118,22 +115,22 @@ export class ProductComponent implements OnInit {
     });
   }
 
-// To reset filter
-  resetFilter(): void {
+  // To reset filter
+  resetFilter() {
     this.filteredCategory = [];
     this.filteredProducts = [];
   }
 
   // dropdown change - mobile devices specific behavior
-onDropdownChange(eventTarget: any) {
+  onDropdownChange(eventTarget: any) {
 
-  this.selectedCategory = '';
-  if (this.selectedCategory === eventTarget.value || eventTarget.value === 'all') {
     this.selectedCategory = '';
-  } else {
-    this.selectedCategory = eventTarget.value;
+    if (this.selectedCategory === eventTarget.value || eventTarget.value === 'all') {
+      this.selectedCategory = '';
+    } else {
+      this.selectedCategory = eventTarget.value;
+    }
+    this.filterSelectedCategoryList(this.selectedCategory, 0);
   }
-  this.filterSelectedCategoryList(this.selectedCategory, 0);
-}
 }
 

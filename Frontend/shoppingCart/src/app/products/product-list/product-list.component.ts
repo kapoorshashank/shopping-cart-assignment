@@ -14,18 +14,17 @@ export class ProductListComponent implements OnInit {
 
   @Input() products: IProduct[];
   @Input() filteredProducts: IProduct[];
-  displayProducts: IProduct[];
-  productDetails: IProduct;
-  selectedProductIndexes = [];
-  isErrorOccured = false;
-
-
-
+  public displayProducts: IProduct[];
+  private productDetails: IProduct;
+  public selectedProductIndexes = [];
+  public isErrorOccured:boolean;
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
-    // Work in Progress for Cart functionality
-  ) { }
+  
+  ) {
+    this.isErrorOccured = false;
+   }
 
   ngOnInit(): void {
   }

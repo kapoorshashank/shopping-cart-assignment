@@ -10,14 +10,14 @@ import { UserService } from '../../user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  errorMsg = '';
-  registrationForm: FormGroup;
+  public errorMsg;
+  public registrationForm: FormGroup;
 
   constructor(
     private router: Router,
     private userService: UserService,
   ) {
-
+this.errorMsg = '';
   }
 
   ngOnInit(): void {

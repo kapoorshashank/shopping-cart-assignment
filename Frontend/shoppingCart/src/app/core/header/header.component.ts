@@ -14,13 +14,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  screenWidth: number;
-  dialogConfig: MatDialogConfig;
-  cartValue: Subject<number>;
-  signedInUser = '';
+  private screenWidth: number;
+  private dialogConfig: MatDialogConfig;
+  public cartValue: Subject<number>;
+  public signedInUser = '';
 
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event?: any) {
+  getScreenSize() {
     this.screenWidth = window.innerWidth;
   }
   constructor(

@@ -11,9 +11,9 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  allCartItems: BehaviorSubject<IProductDetails[]>;
-  itemPrice: BehaviorSubject<number>;
-  cartNumber: number;
+  public allCartItems: BehaviorSubject<IProductDetails[]>;
+  public itemPrice: BehaviorSubject<number>;
+  public cartNumber: number;
 
   constructor(private router: Router,
               private cartService: CartService,
@@ -25,6 +25,8 @@ export class CartComponent implements OnInit {
     this.itemPrice = this.cartService.getCartPrice();
     this.cartService.getTotalCartItems().subscribe(val => this.cartNumber = val);
   }
+
+
 
   updateCart(productId, flag) {
     this.cartService.updateSingleItem(productId, flag);
